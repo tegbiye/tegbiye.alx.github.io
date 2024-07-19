@@ -1,6 +1,6 @@
 # Landing Page
 --
-<img src="./screenshot/index.png"></img>
+<img src="./screenshot/index.png"/>
 
 # Ketari Online
 
