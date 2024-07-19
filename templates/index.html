@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <link href="/static/style.css" rel="stylesheet">
+    <link rel = "icon" href = "/static/images/logo.png" type = "image/x-icon">
+    <title>Ketari Online</title>
+</head>
+<body>
+    <div id="nav1">
+        <a href="/"><img id="logo" src="/static/images/logo.png"></a>
+        <a href="/signInPage" id="link-btn" style="position: absolute;left: 80%; top: 3%;">Log In</a>
+        <button id="theme-btn1" class="trigger_popup_fricc" style="position: absolute;left: 90%; top: 3%;">Sign Up</button>
+    </div>
+    <div class="hover_bkgr_fricc">
+        <span class="helper"></span>
+        <div>
+            <div class="popupCloseButton">&times;</div>
+            <a href="/joinAsClient">
+                <button id="theme-btn2">As Client</button><br><br>
+            </a>
+            <a href="/joinAsWorker">
+                <button id="theme-btn1">As Worker</button>
+            </a>
+        </div>
+    </div>
+    <div class="hm-body">   
+        <div id="hm-txt-div" style="width: 50%; float: left;">
+            <h1 style="font-size: 480%; ">Ketari Online</h1>
+            <h1>Stay Connected With Ketari!</h1>
+        </div>
+       
+        <div id="pic-div" style="width: 50%; float: right;">
+            <img src="/static/images/min.png" width="100%">
+        </div>
+        <div style="width: 80%; float: left; position: absolute; bottom: 10%;">
+            <h1>Let's hire a <span id="spin"></span>!</h1>
+            <a href="/signInPage">
+                <button id="theme-btn1" style="margin-right: 2%;">Find Talent</button>
+            </a>
+            <a href="/signInPage">
+                <button id="theme-btn2">Find Work</button>
+            </a>
+        </div>
+        
+    </div>
+</body>
+</html>

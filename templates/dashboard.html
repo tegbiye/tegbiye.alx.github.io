@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <link href="/static/style.css" rel="stylesheet">
+    <link rel = "icon" href = "/static/images/logo.png" type = "image/x-icon">
+    <title>Dashboard | Ketari Online</title>
+</head>
+    <body>
+        <div id="nav2">
+            <a href="/dashboardPage"><img id="logo" src="/static/images/logo-white.png"></a>
+            <a href="/clientPage">
+                <img src="/static/images/avatar.png" style="position: absolute;left: 85%; top: 3%;" alt="Avatar" class="avatar">
+            </a>
+            <a href="/logOut">
+                <button id="theme-btn2" style="position: absolute;left: 90%; top: 3%;">Log Out</button>
+            </a>
+            
+        </div>
+        <div class="searchContainer" style="width: 40%;float: left;"><h1>Find a Keter right from your own home</h1></div>
+        <div class="searchContainer" style="width: 30%;left: 0%;">
+            <form action="/searchresult" method="POST">
+                <input id="vinput" type="text" name="searchText" placeholder="Search...">
+                <div class="search"></div>
+            </form>
+          </div>
+          <h4 style="color: green;">{{success}}</h4>
+          <h3 style="color: red;"> {{ fail }}</h3>
+        
+            {% for item in jobList %}
+            <a href="#popup1" style="color: black;">
+            <div class="card" id='{{item["job_id"]}}' onclick="detailsShow(this.id)">
+                <div class="container"></div>
+                    <p style="position: relative; top: 0px; left: 80%; width: 20%; padding: 1%; background-color: orange; color: white;">&#9734; {{item["rating"]}} </p>
+                    <h1 style="position: relative; top: -50px; left: 2%;">{{item["job_title"]}} </h1>
+                    <h3 style="position: relative; top: -50px; left: 2%;">{{ item["name"] }}</h3>
+                    <h4 style="position: relative; top: -50px; left: 2%;">Email: {{item["email"]}}</h4>
+                    <h4 style="position: relative; top: -50px; left: 2%;">Mobile: {{item["mobile"]}}</h4>
+                    <h4 style="position: relative; top: -50px; left: 2%;">{{item["city"]}}</h5>
+                   </div>
+              </div>
+              </a>
+            {% endfor %}
+        
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                        <div class="details hide">
+                            <h1 class="title" name="title"></h1>
+                            <h3 class="name" name="personName"></h3>
+                            <p name="rating" style="position: relative; top: 0px; text-align: center; width: 20%; padding: 1%; background-color: orange; color: white;"></p>
+                            <h4 class="email" name="email"></h4>
+                            <h4 class="mob" name="mob"></h4>
+                            <h4 class="cty" name="cty"></h4>
+                            <h4 class="rate" name="rate"></h4>
+                            <h4 class="desc" name="desc"></h4>
+                            <form action="/sendHireRequest" style=" width: 100%;" method="POST">
+                                <input name="jid" style="display: none;">
+                                <input name="wid" style="display: none;"></p>
+                                <button  type="submit" id="lng-btn">Send Request</button>
+                            </form>
+                        </div></div></div></div> 
+        
+    </body>
+</html>

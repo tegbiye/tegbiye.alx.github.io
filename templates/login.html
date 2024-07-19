@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <link href="/static/style.css" rel="stylesheet">
+    <link rel = "icon" href = "/static/images/logo.png" type = "image/x-icon">
+    <title>Log In | Ketari Online</title>
+</head>
+    <body>
+        <div id="nav2">
+            <a href="/"><img id="logo" src="/static/images/logo-white.png"></a>
+            <button class="trigger_popup_fricc" id="theme-btn2" style="position: absolute;left: 90%; top: 3%;">Sign Up</button>
+        </div>
+        <div class="hover_bkgr_fricc">
+            <span class="helper"></span>
+            <div>
+                <div class="popupCloseButton">&times;</div>
+                <a href="/joinAsClient">
+                    <button id="theme-btn2">As Client</button><br><br>
+                </a>
+                <a href="/joinAsWorker">
+                    <button id="theme-btn1">As Worker</button>
+                </a>
+            </div>
+        </div>
+        <div style="position: relative; left: 30%; margin-top: 10%; width: 50%;">
+            <h4 style="color: green;">{{success}}</h4>
+            <h1>Log In</h1>
+            <h3 style="color: red;"> {{ fail }}</h3>
+            <form class="theme-form" action="/user" method="POST">
+                <div>
+                    <select name="status" style="color: gray;">
+                        <Option>As Client</Option>
+                        <Option>As Worker</Option>
+                    </select>
+                </div>
+                <div>
+                    <input type="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div>
+                    <input type="password" name="password" required>
+                    <label for="password">Password</label>
+                </div>
+                <button id="lng-btn">Log In</button>
+            </form>
+        </div>
+    </body>
+</html>

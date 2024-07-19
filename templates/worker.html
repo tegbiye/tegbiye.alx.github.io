@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <link href="/static/style.css" rel="stylesheet">
+    <link rel = "icon" href = "/static/images/logo.png" type = "image/x-icon">
+    <title>Profile | Ketari Online</title>
+</head>
+    <body onload="clientInfo(),loadmyJobs()">
+
+        <div id="nav2">
+            <a href="/dashboardPage"><img id="logo" src="/static/images/logo-white.png"></a>
+            <a href="#popup1" style="color: black;">
+                <button id="theme-btn2" style="position: absolute;left: 80%; top: 3%;">Job +</button>
+            </a>
+            <a href="/logOut">
+                <button id="theme-btn2" style="position: absolute;left: 90%; top: 3%;">Log Out</button>
+            </a>   
+        </div>
+        <hr>
+        <div style="width: 100%; text-align: center; background-color: #f06d06">
+            <button id="lng-btn" class="persnolInfo" style="width: 33%; border: none;" onclick="clientInfo(),loadmyJobs()">Persnol Info</button>
+            <button id="lng-btn" class="requestInfo" style="width: 33%; border: none;" onclick="requestJobInfo(),loadWorkerRequestTable()">Requests for you</button>
+            <button id="lng-btn" class="confirmInfo" style="width: 33%; border: none;" onclick="confirmJobInfo(),loadWorkerConfirmTable()">Jobs in Progress</button>
+        </div>
+        <h4 style="color: green; text-align: center;">{{success}}</h4>
+          <h3 style="color: red; text-align: center;"> {{ fail }}</h3>
+
+        <div class="persnol-info-block" id="persnol-info-block">
+            <h3 name='personName'></h3>
+            <h3 name='mobile'></h3>
+            <h3 name='city'></h3>
+            <h3 name='email'></h3>
+            <h3 name='pass'></h3>
+
+
+            <table id="profile-table" class="table" >
+                <thead>
+                    <tr>
+                        <th>Job</th>
+                        <th>Rate</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                         <td>demo</td>
+                         <td>demo</td>
+                         <td>demo</td>
+                     </tr>
+                     <tr>
+                         <td>demo2</td>
+                         <td>demo2</td>
+                         <td>demo2</td>
+                     </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="request-block" id="request-block">
+           <table id="request-table" class="table" >
+               <thead>
+                   <tr>
+                       <th>Job</th>
+                       <th>Requester</th>
+                       <th>Client Contact</th>
+                       <th>Location</th>
+                       <th>Action</th>
+                   </tr>
+               </thead>
+               <tbody>
+                    <tr>
+                        <td>demo</td>
+                        <td>demo</td>
+                        <td>demo</td>
+                    </tr>
+                    <tr>
+                        <td>demo2</td>
+                        <td>demo2</td>
+                        <td>demo2</td>
+                    </tr>
+               </tbody>
+           </table>
+
+        </div>
+        <div class="confirm-block" id="confirm-block">
+            <table id="confirm-table" class="table" >
+                <thead>
+                    <tr>
+                        <th>Job</th>
+                        <th>Client</th>
+                        <th>Client Contact</th>
+                       <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                         <td>demo</td>
+                         <td>demo</td>
+                     </tr>
+                     <tr>
+                         <td>demo2</td>
+                         <td>demo2</td>
+                     </tr>
+                </tbody>
+            </table>
+ 
+        </div>
+
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                    <div class="details hide">
+                        <div style=" margin-top: 5%; width: 100%;">
+                            <h1>Add New Job</h1>
+                            <form class="theme-form" action="/addNewJob" method="POST">
+                                <div>
+                                    <input type="text" name="title" required>
+                                    <label for="title">Title</label>
+                                </div>
+                                <div>
+                                    <input type="tel" name="rate" required>
+                                    <label for="rate">Rate/hour</label>
+                                </div>
+                                <div>
+                                    <h5 style="color: gray;">Description:</h5>
+                                    <textarea name="desc" required></textarea>
+                                    <!-- <label for="desc">Description</label> -->
+                                </div>
+                                <button id="lng-btn" type="submit">Add</button>
+                            </form>
+                        </div></div></div></div> 
+                        
+    </body>
+</html>

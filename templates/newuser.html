@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="/static/script.js"></script>
+        <link href="/static/style.css" rel="stylesheet">
+        <link rel = "icon" href = "/static/images/logo.png" type = "image/x-icon">
+        <title>Sign Up | Ketari Online</title>
+    </head>
+    <body>
+        <div id="nav2">
+            <a href="/"><img id="logo" src="/static/images/logo-white.png"></a>
+            <a href="/signInPage">
+                <button id="theme-btn2" style="position: absolute;left: 90%; top: 3%;">Log In</button>
+            </a>
+        </div>
+        <div style="position: relative; left: 30%; margin-top: 5%; width: 50%;">
+            <h1>Get Register</h1>
+            <h3 style="color: red;"> {{ fail }}</h3>
+            <form class="theme-form" action="/addNewClient" method="POST">
+                <div>
+                    <input type="text" name="name" required>
+                    <label for="name">Name</label>
+                </div>
+                <div>
+                    <input type="tel" name="mobile" required>
+                    <label for="mobile">Mobile#</label>
+                </div>
+                <div>
+                    <input type="text" name="city" required>
+                    <label for="city">City</label>
+                </div>
+                <div>
+                    <input type="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div>
+                    <input type="password" name="password" required>
+                    <label for="password">Password</label>
+                </div>
+                <button id="lng-btn">Sign Up</button>
+            </form>
+        </div>
+    </body>
+</html>

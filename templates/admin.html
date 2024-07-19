@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <link href="/static/style.css" rel="stylesheet">
+    <link rel = "icon" href = "/static/images/logo.png" type = "image/x-icon">
+    <title>Profile | Mamaar</title>
+</head>
+    <body onload="clientInfo()">
+        <div id="nav2">
+            <a href="/adminPage"><img id="logo" src="/static/images/logo-white.png"></a>
+            <a href="/logOut">
+                <button id="theme-btn2" style="position: absolute;left: 90%; top: 3%;">Log Out</button>
+            </a>   
+        </div>
+        <hr>
+        <div style="width: 100%; text-align: center; background-color: #f06d06">
+            <button id="lng-btn" class="persnolInfo" style="width: 33%; border: none;" onclick="clientInfo()">Persnol Info</button>
+            <button id="lng-btn" class="workersList" style="width: 33%; border: none;">Workers</button>
+            <button id="lng-btn" class="clientsList" style="width: 33%; border: none;">Clients</button>
+        </div>
+                
+       
+        <div class="persnol-info-block" id="persnol-info-block" style="text-align: center;">
+            <h4 style="color: green;">{{success}}</h4>
+            <h3 style="color: red;"> {{ fail }}</h3>
+            <h3 name='personName'></h3>
+            <h3 name='mobile'></h3>
+            <h3 name='city'></h3>
+            <h3 name='email'></h3>
+            <h3 name='pass'></h3>
+            <a href="#popup1" style="color: black;">
+            <button id="theme-btn1">Edit</button>
+            </a>
+        </div>
+        
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                    <div class="details hide">
+                        <div style=" margin-top: 5%; width: 100%;">
+                            <h1>Update Your Info</h1>
+                            <form class="theme-form" action="/updateClientInfo" method="POST">
+                                <div>
+                                    <input type="text" name="name" required>
+                                    <label for="title">Name</label>
+                                </div>
+                                <div>
+                                    <input type="tel" name="mobile" required>
+                                    <label for="mobile">Mobile#</label>
+                                </div>
+                                <div>
+                                    <input type="text" name="city" required>
+                                    <label for="city">City</label>
+                                </div>
+                                <div>
+                                    <input type="email" name="email" required>
+                                    <label for="email">Email</label>
+                                </div>
+                                <div>
+                                    <input type="password" name="password" required>
+                                    <label for="password">password</label>
+                                </div>
+                                <button id="lng-btn" type="submit">Update</button>
+                            </form>
+                        </div></div></div></div>
+
+
+        <div class="request-block" id="request-block">
+           <table id="request-table" class="table" >
+               <thead>
+                   <tr>
+                       <th>Job</th>
+                       <th>Worker</th>
+                   </tr>
+               </thead>
+               <tbody>
+                    <tr>
+                        <td>demo</td>
+                        <td>demo</td>
+                    </tr>
+                    <tr>
+                        <td>demo2</td>
+                        <td>demo2</td>
+                    </tr>
+               </tbody>
+           </table>
+
+        </div>
+        <div class="confirm-block" id="confirm-block">
+            this block show confirmed jobs
+
+        </div>
+    </body>
+</html>
