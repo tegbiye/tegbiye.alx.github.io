@@ -43,6 +43,7 @@ Since I worked the project alone I have been consulting online forums and also t
 MIT License
 
 Copyright (c) 2024 Tegbabu
+[![LICENCE](https://github.com/tegbiye/tegbiye.alx.github.io.ketari-online?tab=MIT-1-ov-file)]
 
 ---
 
