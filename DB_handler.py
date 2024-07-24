@@ -1,3 +1,6 @@
+'''
+Import the appropriate libraries for the Database handling
+'''
 from logging import setLoggerClass
 from re import S
 import re
@@ -5,12 +8,18 @@ import pymysql,jsonify,json
 from flask import flash, request
 from pymysql.cursors import DictCursor
 
+'''
+Class for DBHandler where each function in it 
+connects and update, select, insert operations to the database
+It is the model part
+'''
 class DBHandler:
    def __init__(self, host, user, password, database):
        self.host = host
        self.user = user
        self.password = password
        self.database = database
+
    def connection(self):
         try:
             self.db = pymysql.connect(host=self.host,user=self.user,password=self.password,database=self.database)
@@ -27,10 +36,12 @@ class DBHandler:
             # self.db.commit()
         except Exception:
             raise Exception("DB Connection Faild")
+        
    def close(self):
         if not self.cursor==None and not self.db==None:
             self.cursor.close()
             self.db.close()
+
    def validation(self,status,email,password):
         self.connection()
         if status == "As Client":
@@ -45,6 +56,7 @@ class DBHandler:
         else:
             self.close()
             return False
+        
    def isAdmin(self,email):
        self.connection()
        self.cursor.execute("SELECT * FROM client WHERE EMAIL = %s AND isAdmin = %s ",(email,'1'))
@@ -55,6 +67,7 @@ class DBHandler:
        else:
             self.close()
             return False
+       
    def insertClient(self,name,mobile,city,email,password):
         self.connection()
         query="INSERT INTO `client`(`name`,`mobile`,`city`,`email`,`password`)VALUES (%s,%s,%s,%s,%s)"
@@ -67,6 +80,7 @@ class DBHandler:
             return False
         self.close()
         return True
+   
    def updateClient(self,cid,name,mobile,city,email,password):
         self.connection()
         query="UPDATE `client` SET `name`= %s,`mobile`=%s,`city`=%s,`email`=%s,`password`= %s where user_id=%s " 
@@ -80,6 +94,7 @@ class DBHandler:
             return False
         self.close()
         return True
+   
    def insertWorker(self,name,mobile,title,city,email,password):
         self.connection()
         query="INSERT INTO `worker`(`name`,`mobile`,`title`,`city`,`email`,`password`)VALUES (%s,%s,%s,%s,%s,%s)"
@@ -92,6 +107,7 @@ class DBHandler:
             return False
         self.close()
         return True
+   
    def isClinetExist(self,email):
        self.connection()
        self.cursor.execute("SELECT * FROM client WHERE EMAIL = %s ",(email))
@@ -102,6 +118,7 @@ class DBHandler:
        else:
             self.close()
             return False
+       
    def isWorkerExist(self,email):
        self.connection()
        self.cursor.execute("SELECT * FROM worker WHERE EMAIL = %s ",(email))
@@ -112,6 +129,7 @@ class DBHandler:
        else:
             self.close()
             return False
+       
    def getjobs(self):
        jobList = []
        self.connection()
@@ -121,6 +139,7 @@ class DBHandler:
            jobList.append(item)
        self.close()
        return jobList
+   
    def getSearchedjobs(self,searchTeaxt):
        jobList = []
        self.connection()
@@ -131,23 +150,27 @@ class DBHandler:
            jobList.append(item)
        self.close()
        return jobList
+   
    def getWorkerInfo(self,nemail):
         self.connection()
         self.cursor.execute("SELECT * FROM worker WHERE email=%s",(nemail))
         catchData = self.cursor.fetchall()
         self.close()
         return catchData
+   
    def getClientInfo(self,nemail):
         self.connection()
         self.cursor.execute("SELECT * FROM client WHERE email=%s",(nemail))
         catchData = self.cursor.fetchall()
         self.close()
         return catchData
+   
    def getJobDetails(self,id):
        self.connection()
        self.cursor.execute("SELECT name,w.worker_id,job_id,email,mobile,job_title,city,description,rating,rate from worker w,job j where w.worker_id=j.worker_id and JOB_ID=%s",(id))
        catchData = self.cursor.fetchall()
        return catchData
+   
    def sendRequest(self,jid,wid,cid):
        self.connection()
        query="INSERT INTO `requested` (`job_id`, `worker_id`, `client_id`) VALUES (%s, %s, %s)"
@@ -161,11 +184,13 @@ class DBHandler:
             return False
        self.close()
        return True
+   
    def getClientId(self,email):
        self.connection()
        self.cursor.execute("select user_id from client where email=%s",(email))
        catchData= self.cursor.fetchone()
        return catchData['user_id']
+   
    def getWorkerId(self,email):
        self.connection()
        self.cursor.execute("select worker_id from worker where email=%s",(email))
@@ -181,6 +206,7 @@ class DBHandler:
            jobList.append(item)
        self.close()
        return jobList
+   
    def getConfirmJobs(self,cid):
        jobList = []
        self.connection()
@@ -190,6 +216,7 @@ class DBHandler:
            jobList.append(item)
        self.close()
        return jobList
+   
    def checkRequestedJobs(self,cid):
        jobList = []
        self.connection()
@@ -199,6 +226,7 @@ class DBHandler:
            jobList.append(item)
        self.close()
        return jobList
+   
    def checkMyJobs(self,cid):
        jobList = []
        self.connection()
@@ -208,6 +236,7 @@ class DBHandler:
            jobList.append(item)
        self.close()
        return jobList
+   
    def checkConfirmJobs(self,cid):
        jobList = []
        self.connection()
@@ -217,6 +246,7 @@ class DBHandler:
            jobList.append(item)
        self.close()
        return jobList
+   
    def insertNewJob(self,wid,title,rate,desc):
         self.connection()
         query="INSERT INTO `job`(`worker_id`,`job_title`,`rate`,`description`)VALUES (%s,%s,%s,%s)"
@@ -229,6 +259,7 @@ class DBHandler:
             return False
         self.close()
         return True
+   
    def cancelRequest(self,worker_id,job_id,client_id):
        self.connection()
        query="DELETE from requested where job_id=%s and worker_id=%s and client_id=%s"
@@ -240,6 +271,7 @@ class DBHandler:
             return False
        finally:
            self.close()
+
    def deletejobP(self,job_id):
        self.connection()
        query="DELETE from job where job_id=%s"
@@ -251,6 +283,7 @@ class DBHandler:
             return False
        finally:
            self.close()
+
    def jobClose(self,worker_id,job_id,client_id,ratings):
        self.connection()
        self.cursor.execute("SELECT rating from worker where worker_id=%s",(worker_id))

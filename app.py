@@ -17,17 +17,21 @@ def start():
 def signInPage():
     session.clear()
     return render_template("login.html")
+
 @app.route('/joinAsClient')
 def clintSingUpPage():
     return render_template("newuser.html")
+
 @app.route('/joinAsWorker')
 def workerSingUpPage():
     return render_template("newaccount.html")
+
 @app.route('/adminPage')
 def adminPage():
     if session.get('loggedin')=='admin':
         return render_template("admin.html")
     return redirect('/signInPage')
+
 @app.route('/dashboardPage')
 def dashboardPage():
     if session.get('loggedin')=='client':
@@ -37,6 +41,7 @@ def dashboardPage():
         else:
             return render_template("dashboard.html", jobList=saveSearch)
     return redirect('/signInPage')
+
 @app.route('/searchresult', methods=['POST','GET'])
 def searchedResults():
     if session.get('loggedin')=='client':
@@ -46,17 +51,20 @@ def searchedResults():
         else:
             return render_template("dashboard.html", jobList=saveSearch)
     return redirect('/signInPage')
+
 @app.route('/workerPage')
 def workerPage():
     if session.get('loggedin')=='worker':
         return render_template("worker.html")
     return redirect('/signInPage')
+
 @app.route('/clientPage')
 def clientPage():
     if session.get('loggedin')=='client':
         return render_template("client.html")
     elif session.get('loggedin')=='admin':
         return render_template("admin.html")
+    
 @app.route('/user', methods=['POST','GET'])
 def user():
     validation = dbHandler.validation(request.form['status'],request.form['email'],request.form['password'])
@@ -79,6 +87,7 @@ def user():
             return redirect('/workerPage')
     else:
         return render_template("/login.html",fail='Invalid credentials')
+    
 @app.route('/addNewClient',methods=['POST','GET'])
 def addNewClient():
     if dbHandler.insertClient(request.form['name'],request.form['mobile'],request.form['city'],request.form['email'],request.form['password']):
@@ -88,12 +97,14 @@ def addNewClient():
            return render_template("/newaccount.html",fail='A account with this email already exist')
         else:
            return render_template("/newaccount.html",fail='Invalid details')
+        
 @app.route('/updateClientInfo',methods=['POST','GET'])
 def updateClient():
     if dbHandler.updateClient(dbHandler.getClientId(session['email']),request.form['name'],request.form['mobile'],request.form['city'],request.form['email'],request.form['password']):
         return render_template('/client.html',success='Profile Update Successfully')
     else:
         return render_template('/client.html',fail='Invalid details')
+    
 @app.route('/addNewWorker', methods=['POST','GET'])
 def addNewWorker():
    if dbHandler.insertWorker(request.form['name'],request.form['mobile'],request.form['title'],request.form['city'],request.form['email'],request.form['password']):
@@ -103,12 +114,14 @@ def addNewWorker():
            return render_template("/newaccount.html",fail='A account with this email already exist')
         else:
            return render_template("/newaccount.html",fail='Invalid details')
+        
 @app.route('/addNewJob',methods=['GET','POST'])
 def addNewJob():
     if dbHandler.insertNewJob(dbHandler.getWorkerId(session['email']),request.form['title'],request.form['rate'],request.form['desc']):
         return render_template('/worker.html',success='Job Added')
     else:
         return render_template('/worker.html',fail='Request Denied')
+    
 @app.route('/logOut', methods=['POST','GET'])
 def logItOut():
     session.clear()
@@ -129,6 +142,7 @@ def jobDetails():
     id=request.args.get('id')
     results=dbHandler.getJobDetails(id)
     return json.dumps(results)
+
 @app.route('/sendHireRequest',methods=['GET','POST'])
 def sendHiringRequest():
     cid=dbHandler.getClientId(session['email'])
@@ -138,31 +152,37 @@ def sendHiringRequest():
         return redirect('/dashboardPage')
     else:
         return redirect('/dashboardPage')
+    
 @app.route('/requestData',methods=['GET'])
 def getRequestedData():
     cid=dbHandler.getClientId(session['email'])
     results=dbHandler.getRequestedJobs(cid)
     return json.dumps(results)
+
 @app.route('/confirmData',methods=['GET'])
 def getAcceptedData():
     cid=dbHandler.getClientId(session['email'])
     results=dbHandler.getConfirmJobs(cid)
     return json.dumps(results)
+
 @app.route('/requestDataForWorker',methods=['GET'])
 def getRequestedDataForWorker():
     cid=dbHandler.getWorkerId(session['email'])
     results=dbHandler.checkRequestedJobs(cid)
     return json.dumps(results)
+
 @app.route('/getMyJobs',methods=['GET'])
 def getMyJobs():
     cid=dbHandler.getWorkerId(session['email'])
     results=dbHandler.checkMyJobs(cid)
     return json.dumps(results)
+
 @app.route('/confirmDataForWorker',methods=['GET'])
 def getConfirmDataForWorker():
     cid=dbHandler.getWorkerId(session['email'])
     results=dbHandler.checkConfirmJobs(cid)
     return json.dumps(results)
+
 @app.route('/cancelRequest',methods=['POST'])
 def cancelRequest():
     job_id=request.form['job_id']
@@ -172,6 +192,7 @@ def cancelRequest():
         return json.dumps({"msg":"Canceled"})
     else:
         return json.dumps({"msg":"Can not Cancel"})
+    
 @app.route('/deleteMyJob',methods=['POST'])
 def deleteMyJob():
     job_id=request.form['job_id']
@@ -179,6 +200,7 @@ def deleteMyJob():
         return json.dumps({"msg":"Canceled"})
     else:
         return json.dumps({"msg":"Can not Cancel"})
+    
 @app.route('/closeTheJob',methods=['POST'])
 def closeTheJob():
     job_id=request.form['job_id']
@@ -189,6 +211,7 @@ def closeTheJob():
         return json.dumps({"msg":"Job is closed"})
     else:
         return json.dumps({"msg":"Job is still in progress"})
+    
 @app.route('/acceptRequest',methods=['POST'])
 def acceptRequest():
     job_id=request.form['job_id']
@@ -198,5 +221,6 @@ def acceptRequest():
         return json.dumps({"msg":"Accepted"})
     else:
         return json.dumps({"msg":"Job is not confirmed"})
+    
 if __name__ == '__main__':
     app.run(debug=True)
