@@ -47,7 +47,6 @@ Copyright (c) 2024 Tegbabu
 
 ---
 ## Authors Detail
-[![LinkedIn](https://www.linkedin.com/in/tegbabu-nuramo-a8a6ba142/)]
-[![Twitter(X)](https://x.com/tegbiye/)]
+Tegbabu S. Nuramo - [Github](https://github.com/tegbiye) / [Twitter](https://x.com/tegbiye) / [LinkedIn](https://www.linkedin.com/in/tegbabu-nuramo-a8a6ba142/)
 Any tips on how it can be better or suggestions are appreciated.
 Contact at: se.tegbabu.solomon@gmail.com
