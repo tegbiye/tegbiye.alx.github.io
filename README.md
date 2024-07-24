@@ -46,6 +46,8 @@ Copyright (c) 2024 Tegbabu
 [![LICENCE](https://github.com/tegbiye/tegbiye.alx.github.io.ketari-online?tab=MIT-1-ov-file)]
 
 ---
-
+## Authors Detail
+[![LinkedIn](https://www.linkedin.com/in/tegbabu-nuramo-a8a6ba142/)]
+[![Twitter(X)](https://x.com/tegbiye/)]
 Any tips on how it can be better or suggestions are appreciated.
 Contact at: se.tegbabu.solomon@gmail.com
