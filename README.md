@@ -1,8 +1,7 @@
 # Landing Page
-```
+
 <img src="./screenshot/index.png"/>
 
-```
 
 # Ketari Online
 
@@ -20,9 +19,9 @@ improved management and organization for the local job market.
 
 ## Installation
 ```
-1. Clone the project
-2. Install the flask
-3. Install the python if there is not installed
+1. Clone the project (git clone https://github.com/tegbiye/tegbiye.alx.github.io.ketari-online.git)
+2. Install the flask (pip install flask)
+3. Install the python if there is not installed (https://www.python.org/downloads/)
 4. MySQL need to be installed if not installed (Xampp can be installed since it has the full distribution)
 
 ```
@@ -38,6 +37,13 @@ Since I worked the project alone I have been consulting online forums and also t
 3. open project in an IDE Visual Studio Code
 
 ```
+
+## 📃LICENCE
+
+MIT License
+
+Copyright (c) 2024 Tegbabu
+
 ---
 
 Any tips on how it can be better or suggestions are appreciated.
